@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compra Segura, Sem Enrosco 🛍️</title>
+<meta name="description" content="Guia visual e rápido sobre seus direitos em compras por marketplaces, redes sociais e apps de entrega — Extensão UnirG, Gurupi/TO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EAF8F1;
+    --card:#FFFFFF;
+    --ink:#2E1A3D;
+    --ink-soft:#5B4E6B;
+    --line:#D8ECE1;
+    --coral:#FF6B5E;
+    --coral-tint:#FFE1DC;
+    --gold:#FFB238;
+    --gold-tint:#FFEFCF;
+    --teal:#1EA896;
+    --teal-tint:#DBF5EE;
+    --violet:#7C5CFF;
+    --violet-tint:#E9E3FF;
+    --font-display:'Baloo 2', system-ui, sans-serif;
+    --font-body:'Nunito', system-ui, sans-serif;
+    --barheight:4.6rem;
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html{ touch-action:manipulation; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;
+    padding-bottom: calc(var(--barheight) + env(safe-area-inset-bottom, 0px));
+    overflow-x:hidden;
+  }
+  .skip-link{ position:absolute; left:-999px; background:var(--ink); color:#fff; padding:.6rem 1rem; border-radius:8px; z-index:300; }
+  .skip-link:focus{ left:1rem; top:1rem; }
+  a{ color:var(--violet); }
+  button:focus-visible, a:focus-visible{ outline:3px solid var(--violet); outline-offset:2px; }
+
+  .wrap{ max-width:900px; margin:0 auto; padding:0 1.25rem; }
+  @media (max-width:380px){ .wrap{ padding:0 1rem; } }
+
+  /* ---------- Top tab bar ---------- */
+  .tabbar-top{
+    position:sticky; top:0; z-index:80;
+    background:rgba(234,248,241,.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .tabbar-top-inner{ display:flex; align-items:center; gap:.7rem; padding:.5rem 0; position:relative; }
+  .brand{ flex:none; font-family:var(--font-display); font-weight:700; font-size:.95rem; white-space:nowrap; }
+  @media (max-width:460px){ .brand .brand-text{ display:none; } }
+  .tabs-row{ display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; flex:1; -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity; }
+  .tabs-row::-webkit-scrollbar{ display:none; }
+  .tabbar-top-inner::after{
+    content:""; position:absolute; right:0; top:0; bottom:0; width:28px; pointer-events:none;
+    background:linear-gradient(to right, transparent, rgba(234,248,241,.98));
+  }
+
+  .tab-btn{
+    flex:none; font-family:var(--font-display); font-weight:600; font-size:.8rem;
+    color:var(--ink); background:var(--card); border:2px solid var(--line);
+    padding:.5rem .85rem; min-height:2.5rem; border-radius:999px; white-space:nowrap; cursor:pointer;
+    scroll-snap-align:start;
+  }
+  .tab-btn:hover{ border-color:var(--violet); color:var(--violet); }
+  .tab-btn[aria-selected="true"]{ background:var(--violet); border-color:var(--violet); color:#fff; }
+
+  /* ---------- Bottom tab bar ---------- */
+  .tabbar-bottom{
+    position:fixed; left:0; right:0; bottom:0; z-index:80;
+    background:rgba(255,255,255,.96); backdrop-filter:blur(6px);
+    border-top:1px solid var(--line);
+    padding:.5rem .8rem calc(.5rem + env(safe-area-inset-bottom,0px));
+  }
+  .tabbar-bottom-wrap{ position:relative; max-width:900px; margin:0 auto; }
+  .tabbar-bottom-wrap::after{
+    content:""; position:absolute; right:0; top:0; bottom:0; width:28px; pointer-events:none;
+    background:linear-gradient(to right, transparent, rgba(255,255,255,.98));
+  }
+  .tabbar-bottom-inner{ display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity; }
+  .tabbar-bottom-inner::-webkit-scrollbar{ display:none; }
+
+  main{ padding:1.8rem 0 1rem; }
+  @media (max-width:480px){ main{ padding:1.4rem 0 .5rem; } }
+  .panel[hidden]{ display:none; }
+
+  /* ---------- Hero (Início panel) ---------- */
+  .hero{ display:grid; grid-template-columns:1.1fr .9fr; gap:1.5rem; align-items:center; padding-bottom:1rem; }
+  @media (max-width:680px){ .hero{ grid-template-columns:1fr; } }
+  .hero h1{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.9rem,5.2vw,2.7rem); line-height:1.08; margin:0 0 .8rem; }
+  .hero h1 span{ color:var(--coral); }
+  .hero p{ font-size:1.05rem; color:var(--ink-soft); max-width:38ch; margin:0 0 1.3rem; }
+  .hero-ctas{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  @media (max-width:480px){
+    .hero-ctas{ flex-direction:column; }
+    .hero-ctas .btn{ width:100%; text-align:center; }
+  }
+  .btn{ font-family:var(--font-display); font-weight:700; font-size:.92rem; text-decoration:none; padding:.8rem 1.35rem; border-radius:999px; border:none; cursor:pointer; display:inline-block; }
+  .btn-primary{ background:var(--coral); color:#fff; }
+  .btn-primary:hover{ background:#ff5647; }
+  .btn-ghost{ background:#fff; color:var(--ink); border:2px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--ink); }
+  .hero-stats{ display:flex; gap:1.4rem; margin-top:1.5rem; flex-wrap:wrap; }
+  .hero-stats div{ font-size:.78rem; color:var(--ink-soft); font-weight:700; }
+  .hero-stats b{ display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--ink); }
+  .hero-art{ display:flex; justify-content:center; }
+  .hero-art svg{ width:100%; max-width:270px; height:auto; }
+  @media (max-width:360px){ .hero-art svg{ max-width:210px; } }
+
+  .home-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:.65rem; margin-top:1.6rem; }
+  @media (max-width:560px){ .home-grid{ grid-template-columns:1fr; } }
+  .home-card{
+    display:flex; align-items:center; gap:.6rem; text-align:left; width:100%;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:.75rem .9rem; cursor:pointer; font-family:var(--font-body); color:var(--ink);
+  }
+  .home-card:hover{ border-color:var(--violet); }
+  .home-card .emo{ font-size:1.3rem; flex:none; }
+  .home-card span.txt{ font-weight:700; font-size:.88rem; }
+
+  /* ---------- Content block ---------- */
+  .block-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:1.6rem; align-items:center; }
+  .block-grid.reverse{ grid-template-columns:1.15fr .85fr; }
+  .block-grid.reverse .art{ order:2; }
+  @media (max-width:680px){
+    .block-grid, .block-grid.reverse{ grid-template-columns:1fr; }
+    .block-grid.reverse .art{ order:0; }
+  }
+  .art{ display:flex; justify-content:center; }
+  .art svg{ width:100%; max-width:220px; height:auto; }
+  @media (max-width:360px){ .art svg{ max-width:170px; } }
+  .tag{ display:inline-block; font-family:var(--font-display); font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.03em; padding:.3rem .7rem; border-radius:999px; margin-bottom:.6rem; }
+  h2.block-title{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,3.2vw,1.9rem); margin:0 0 .7rem; line-height:1.12; }
+  .bullets{ list-style:none; margin:0; padding:0; display:grid; gap:.6rem; }
+  .bullets li{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:.75rem .95rem; font-size:.95rem; font-weight:600; display:flex; gap:.6rem; align-items:flex-start; }
+  .bullets li .ico{ flex:none; font-size:1.1rem; line-height:1.3; }
+  .bullets li b{ font-weight:800; }
+  .intro-line{ color:var(--ink-soft); font-weight:600; margin:0 0 .9rem; font-size:.95rem; }
+
+  .chip-grid{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:.9rem; }
+  .chip{ font-family:var(--font-body); font-weight:700; font-size:.85rem; padding:.5rem .9rem; border-radius:999px; border:2px solid transparent; }
+  .chip.danger{ background:var(--coral-tint); color:#B8342A; }
+  .chip.safe{ background:var(--teal-tint); color:#116355; }
+  .chip.warn{ background:var(--gold-tint); color:#8A5A00; }
+
+  table.mini{ width:100%; border-collapse:collapse; margin-top:.6rem; background:var(--card); border-radius:14px; overflow:hidden; border:1px solid var(--line); }
+  table.mini td{ padding:.65rem .8rem; font-size:.88rem; border-bottom:1px solid var(--line); }
+  table.mini tr:last-child td{ border-bottom:none; }
+  table.mini td:first-child{ font-weight:700; }
+
+  /* ---------- Term links (glossary) ---------- */
+  .term-link{
+    background:none; border:none; padding:.2rem 0; font:inherit; font-weight:800; color:var(--violet);
+    text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px; cursor:pointer;
+    display:inline;
+  }
+  .term-link:hover{ color:#5A38E0; }
+
+  /* ---------- Flow (game style) ---------- */
+  .flow-card{ background:var(--card); border:1px solid var(--line); border-radius:20px; padding:1.5rem; }
+  @media (max-width:480px){ .flow-card{ padding:1.15rem; } }
+  .flow-trail{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; min-height:1.6rem; }
+  .flow-trail span{ font-size:.72rem; background:var(--violet-tint); color:#4A2FCC; padding:.25rem .6rem; border-radius:999px; font-weight:700; }
+  .flow-q{ font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin:0 0 1.1rem; }
+  .flow-opts{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .flow-opt{ font-family:var(--font-display); font-weight:700; font-size:1rem; padding:.8rem 1.5rem; border-radius:16px; border:none; cursor:pointer; background:var(--violet); color:#fff; }
+  .flow-opt.secondary{ background:var(--gold); color:#4A2E00; }
+  .flow-opt:hover{ opacity:.88; }
+  @media (max-width:480px){
+    .flow-opts{ flex-direction:column; }
+    .flow-opt{ width:100%; text-align:center; }
+  }
+  .flow-result h3{ font-family:var(--font-display); font-size:1.2rem; margin:0 0 .5rem; }
+  .flow-result p{ font-size:.96rem; color:var(--ink-soft); }
+  .flow-note{ margin-top:.9rem; padding:.8rem 1rem; border-radius:14px; font-size:.88rem; font-weight:600; }
+  .flow-note.warn{ background:var(--gold-tint); color:#8A5A00; }
+  .flow-note.safe{ background:var(--teal-tint); color:#116355; }
+  .flow-restart{ margin-top:1.2rem; background:none; border:2px solid var(--line); color:var(--ink-soft); padding:.5rem 1.1rem; border-radius:999px; font-family:var(--font-display); font-weight:700; font-size:.85rem; cursor:pointer; }
+  .flow-restart:hover{ border-color:var(--ink-soft); }
+
+  /* ---------- Channels ---------- */
+  .channel-grid{ display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-top:.9rem; }
+  @media (max-width:560px){ .channel-grid{ grid-template-columns:1fr; } }
+  .channel-item{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:.9rem 1rem; text-decoration:none; color:var(--ink); display:block; }
+  .channel-item:hover{ border-color:var(--violet); }
+  .channel-item .emo{ font-size:1.4rem; }
+  .channel-item h4{ margin:.35rem 0 .15rem; font-family:var(--font-display); font-size:1rem; }
+  .channel-item p{ margin:0; font-size:.8rem; color:var(--ink-soft); }
+
+  /* ---------- Quiz ---------- */
+  .quiz-card{ background:var(--card); border:1px solid var(--line); border-radius:20px; padding:1.5rem; }
+  @media (max-width:480px){ .quiz-card{ padding:1.15rem; } }
+  .quiz-progress{ font-family:var(--font-display); font-weight:700; font-size:.8rem; color:var(--violet); margin-bottom:.7rem; }
+  .quiz-q{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; margin:0 0 1rem; }
+  .quiz-opt{ display:block; width:100%; text-align:left; font-family:var(--font-body); font-weight:700; font-size:.95rem; padding:.75rem 1rem; margin-bottom:.55rem; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz-opt:hover{ border-color:var(--violet); }
+  .quiz-opt.correct{ background:var(--teal-tint); border-color:var(--teal); color:#116355; }
+  .quiz-opt.incorrect{ background:var(--coral-tint); border-color:var(--coral); color:#B8342A; }
+  .quiz-opt[disabled]{ cursor:default; }
+  .quiz-fb{ font-size:.9rem; font-weight:600; margin-top:.7rem; padding:.75rem 1rem; border-radius:14px; background:var(--gold-tint); color:#5B4000; display:none; }
+  .quiz-next{ margin-top:1rem; font-family:var(--font-display); font-weight:700; background:var(--violet); color:#fff; border:none; padding:.65rem 1.4rem; border-radius:999px; cursor:pointer; display:none; font-size:.9rem; }
+  .quiz-score .big{ font-family:var(--font-display); font-size:2.6rem; font-weight:800; color:var(--coral); }
+
+  /* ---------- Navegação Avançar / Retroceder ---------- */
+  .panel-nav{
+    display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+    margin-top:2.2rem; padding-top:1.2rem; border-top:1px solid var(--line);
+  }
+  .nav-btn{
+    font-family:var(--font-display); font-weight:700; font-size:.88rem;
+    padding:.6rem 1.2rem; border-radius:999px; border:2px solid var(--line);
+    background:#fff; color:var(--ink); cursor:pointer;
+  }
+  .nav-btn.next{ background:var(--violet); border-color:var(--violet); color:#fff; }
+  .nav-btn:hover:not(:disabled){ border-color:var(--violet); color:var(--violet); }
+  .nav-btn.next:hover:not(:disabled){ background:#6A4BE0; color:#fff; }
+  .nav-btn:disabled{ opacity:.3; cursor:not-allowed; }
+  .nav-progress{ font-size:.76rem; color:var(--ink-soft); font-weight:700; flex:none; }
+  @media (max-width:420px){
+    .nav-btn{ padding:.6rem .8rem; font-size:.78rem; min-height:2.6rem; }
+    .nav-progress{ display:none; }
+  }
+
+  /* ---------- Modal (glossary) ---------- */
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(46,26,61,.55); display:flex; align-items:center; justify-content:center; padding:1rem; z-index:300; }
+  .modal-backdrop[hidden]{ display:none; }
+  .modal-box{ background:#fff; border-radius:20px; max-width:480px; width:100%; max-height:85vh; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:1.6rem 1.5rem; position:relative; }
+  @media (max-width:480px){
+    .modal-backdrop{ align-items:flex-end; padding:0; }
+    .modal-box{ max-width:100%; max-height:88vh; border-radius:20px 20px 0 0; padding:1.4rem 1.2rem calc(1.4rem + env(safe-area-inset-bottom,0px)); }
+  }
+  .modal-box h3{ font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin:0 0 .8rem; padding-right:2rem; color:var(--violet); }
+  .modal-box p{ font-size:.92rem; color:var(--ink-soft); margin:0 0 .8rem; }
+  .modal-box ul{ margin:0 0 .8rem; padding-left:1.2rem; font-size:.9rem; color:var(--ink-soft); }
+  .modal-box li{ margin-bottom:.4rem; }
+  .modal-box table{ font-size:.85rem; color:var(--ink-soft); }
+  .modal-close{ position:absolute; top:1rem; right:1rem; background:var(--bg); border:none; border-radius:50%; width:38px; height:38px; font-size:1rem; cursor:pointer; color:var(--ink); }
+  .modal-close:hover{ background:var(--line); }
+  .modal-src{ font-size:.72rem; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:.7rem; margin-top:.3rem; }
+
+  /* ---------- Footer ---------- */
+  footer{ padding:2.2rem 0 1rem; border-top:1px solid var(--line); margin-top:1rem; }
+  footer .share{ display:flex; gap:.7rem; flex-wrap:wrap; margin:1rem 0 1.6rem; }
+  .footer-cols{ display:grid; grid-template-columns:1.4fr 1fr; gap:1.6rem; margin-bottom:1.2rem; }
+  @media (max-width:620px){ .footer-cols{ grid-template-columns:1fr; } }
+  .footer-cols h5{ font-family:var(--font-display); font-weight:700; font-size:.85rem; margin:0 0 .5rem; color:var(--ink); }
+  .footer-cols p, .footer-cols li{ font-size:.82rem; color:var(--ink-soft); }
+  .footer-cols ul{ margin:0; padding-left:1.1rem; columns:1; }
+  .footer-cols li{ margin-bottom:.3rem; }
+  footer small{ color:var(--ink-soft); display:block; font-size:.76rem; line-height:1.6; }
+</style>
+</head>
+<body>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+<div class="tabbar-top" id="tabbarTop">
+  <div class="wrap tabbar-top-inner">
+    <span class="brand">🛍️<span class="brand-text"> Compra Segura</span></span>
+    <div class="tabs-row" id="tabsTop" role="tablist" aria-label="Seções — parte 1"></div>
+  </div>
+</div>
+
+<main id="conteudo" class="wrap"></main>
+
+<div class="tabbar-bottom">
+  <div class="tabbar-bottom-wrap">
+    <div class="tabbar-bottom-inner" id="tabsBottom" role="tablist" aria-label="Seções — parte 2"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div>
+    <p class="modal-src">Conteúdo completo, como na versão institucional da cartilha.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Tabs: metade em cima, metade embaixo ---------------- */
+  var SECTIONS = [
+    { id:"inicio",           label:"🏠 Início",          pos:"top" },
+    { id:"arrependimento",   label:"🔁 Arrependimento",  pos:"top" },
+    { id:"responsabilidade",label:"🏬 Quem resolve",     pos:"top" },
+    { id:"social",           label:"📱 Redes sociais",   pos:"top" },
+    { id:"golpes",           label:"🚩 Golpes",          pos:"top" },
+    { id:"entrega",          label:"🛵 Entrega",         pos:"bottom" },
+    { id:"lgpd",             label:"🔒 Seus dados",      pos:"bottom" },
+    { id:"fluxo",            label:"🧭 Não recebi?",     pos:"bottom" },
+    { id:"canais",           label:"📢 Ajuda",           pos:"bottom" },
+    { id:"quiz",             label:"🎯 Quiz",            pos:"bottom" },
+    { id:"sobre",            label:"ℹ️ Sobre",           pos:"bottom" }
+  ];
+
+  var topRow = document.getElementById("tabsTop");
+  var bottomRow = document.getElementById("tabsBottom");
+  var main = document.getElementById("conteudo");
+
+  SECTIONS.forEach(function(s, i){
+    var btn = document.createElement("button");
+    btn.className = "tab-btn";
+    btn.id = "tab-" + s.id;
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    btn.setAttribute("aria-controls", "panel-" + s.id);
+    btn.setAttribute("data-target", s.id);
+    btn.textContent = s.label;
+    btn.addEventListener("click", function(){ showPanel(s.id); });
+    (s.pos === "top" ? topRow : bottomRow).appendChild(btn);
+  });
+
+  function showPanel(id){
+    SECTIONS.forEach(function(s){
+      var panel = document.getElementById("panel-" + s.id);
+      if(panel) panel.hidden = (s.id !== id);
+      document.getElementById("tab-" + s.id).setAttribute("aria-selected", s.id === id ? "true" : "false");
+    });
+    window.scrollTo({ top:0, behavior:"auto" });
+  }
+
+  /* ---------------- Glossário (conteúdo completo da versão institucional) ---------------- */
+  var GLOSSARY = {
+    arrependimento: {
+      title:"Direito de arrependimento (art. 49 do CDC)",
+      html:'<p>Toda compra feita fora de uma loja física — pela internet, telefone ou aplicativo — pode ser desfeita dentro de um prazo, mesmo que o produto não tenha nenhum defeito.</p>' +
+        '<ul>' +
+          '<li><strong>Prazo:</strong> 7 dias corridos, contados do recebimento do produto (ou da assinatura do contrato, em serviços).</li>' +
+          '<li><strong>Motivo:</strong> não precisa justificar. Não gostou, mudou de ideia, achou caro — qualquer razão vale.</li>' +
+          '<li><strong>Devolução:</strong> o produto deve voltar em condições de uso normal.</li>' +
+          '<li><strong>Reembolso:</strong> o valor pago — incluindo o frete de entrega — deve ser devolvido integralmente.</li>' +
+          '<li><strong>Frete de devolução:</strong> é responsabilidade do fornecedor, não do consumidor.</li>' +
+        '</ul>' +
+        '<p><strong>Como agir:</strong> guarde o comprovante de compra e registre o pedido de arrependimento por escrito (chat, e-mail ou formulário da loja).</p>' +
+        '<p><strong>Atenção:</strong> não se aplica a compras feitas presencialmente em loja física, nem, em geral, a produtos personalizados ou perecíveis já consumidos.</p>'
+    },
+    responsabilidade: {
+      title:"Quem responde: marketplace e vendedor terceiro",
+      html:'<p>Em plataformas como marketplaces, muitas vezes quem vende o produto não é a própria empresa da plataforma, e sim um lojista terceiro. Isso não isenta a plataforma de responsabilidade.</p>' +
+        '<p>O CDC (arts. 18 a 25) trata fornecedor de forma ampla: fabricante, importador, comerciante e, no ambiente digital, também a plataforma que intermedeia a venda podem responder pelos danos causados ao consumidor, sobretudo quando falham no dever de fiscalizar quem vende em seu ambiente.</p>' +
+        '<p><strong>O marketplace normalmente responde quando:</strong></p>' +
+        '<ul><li>Não identifica claramente o vendedor real</li><li>Falha na segurança do pagamento</li><li>Não oferece canal de mediação ou reembolso</li><li>Permite vendedor com histórico de fraude continuar ativo</li></ul>' +
+        '<p><strong>O vendedor terceiro responde por:</strong></p>' +
+        '<ul><li>Qualidade e conformidade do produto</li><li>Prazo e condição de entrega combinados</li><li>Informações incorretas no anúncio</li><li>Vícios e defeitos do item vendido</li></ul>'
+    },
+    social: {
+      title:"Redes sociais e live commerce",
+      html:'<p>Vender pelo Instagram, TikTok, por grupos de WhatsApp ou durante uma live não retira a proteção do consumidor. Se existe habitualidade e intenção comercial, valem as mesmas regras do comércio eletrônico.</p>' +
+        '<p><strong>O que a lei exige de quem vende:</strong></p>' +
+        '<ul>' +
+          '<li>Identificação clara do vendedor: nome ou razão social, CNPJ ou CPF e endereço para contato (Decreto n.º 7.962/2013).</li>' +
+          '<li>Informação completa sobre o produto, preço total, condições de entrega e política de troca antes da compra ser concluída.</li>' +
+          '<li>Atendimento pós-venda acessível para dúvidas, trocas e reclamações.</li>' +
+        '</ul>' +
+        '<p><strong>Live commerce e vídeos de venda (TikTok, Instagram e afins):</strong> promoções por tempo limitado são uma técnica válida de venda, mas não dispensam o vendedor de manter as informações do produto e o prazo de arrependimento.</p>'
+    },
+    golpes: {
+      title:"Golpes comuns em compras digitais",
+      html:'<p>A maioria dos golpes segue padrões parecidos. Reconhecer esses sinais evita boa parte do prejuízo.</p>' +
+        '<ul>' +
+          '<li><strong>Perfis falsos:</strong> cópias de lojas reais, usando as mesmas fotos e nome.</li>' +
+          '<li><strong>Venda só por Pix, sem garantia:</strong> pagamento antecipado, sem nota fiscal, sem contrato.</li>' +
+          '<li><strong>Links fraudulentos:</strong> mensagens com links falsos de "rastreamento" ou "promoção", usados para roubar dados.</li>' +
+          '<li><strong>Preço muito abaixo do mercado:</strong> isca comum para atrair pagamento rápido.</li>' +
+        '</ul>' +
+        '<p><strong>Se você já caiu em um golpe:</strong> reúna prints e comprovantes, registre boletim de ocorrência e, se o pagamento foi por Pix, acione seu banco imediatamente.</p>'
+    },
+    entrega: {
+      title:"Aplicativos de entrega: de quem é a responsabilidade",
+      html:'<p>Quando a compra envolve um aplicativo de entrega (loja + motorista contratado pela plataforma), a responsabilidade costuma se dividir entre quem vendeu o produto e quem executou o transporte.</p>' +
+        '<table><tr><td><strong>Produto errado ou com defeito de fabricação</strong></td><td>Loja/restaurante vendedor</td></tr>' +
+        '<tr><td><strong>Pedido avariado no transporte</strong></td><td>Aplicativo de entrega</td></tr>' +
+        '<tr><td><strong>Pedido nunca chegou</strong></td><td>App e loja, solidariamente</td></tr>' +
+        '<tr><td><strong>Cobrança indevida ou duplicada</strong></td><td>Aplicativo de entrega</td></tr></table>'
+    },
+    lgpd: {
+      title:"Seus dados pessoais (LGPD)",
+      html:'<p>Toda compra digital envolve dados: nome, CPF, endereço, telefone. A LGPD dá ao consumidor controle sobre essas informações.</p>' +
+        '<p><strong>Direitos garantidos:</strong></p>' +
+        '<ul>' +
+          '<li>Saber quais dados uma loja ou plataforma coleta e para quê serão usados.</li>' +
+          '<li>Pedir a correção de dados incompletos ou desatualizados.</li>' +
+          '<li>Solicitar a exclusão dos seus dados quando não forem mais necessários.</li>' +
+          '<li>Recusar o uso dos dados para fins diferentes daquele para o qual foram coletados.</li>' +
+        '</ul>' +
+        '<p><strong>Cuidados preventivos:</strong> não envie CPF, RG ou senha por link recebido em mensagem; verifique se o site usa conexão segura (https://); leia a política de privacidade antes de aceitar cadastros com dados sensíveis.</p>'
+    },
+    med: {
+      title:"MED — Mecanismo Especial de Devolução do Pix",
+      html:'<p>Ferramenta do Banco Central para tentar bloquear e devolver valores de transações Pix fraudulentas. Pode ser solicitada diretamente ao seu banco em até 80 dias da transação.</p>' +
+        '<p>Em caso de suspeita de golpe, registre também um boletim de ocorrência — isso ajuda a fundamentar o pedido.</p>'
+    },
+    juizado: {
+      title:"Juizado Especial Cível",
+      html:'<p>Atende causas de até 40 salários mínimos. Até 20 salários mínimos, não é obrigatória a presença de advogado — o próprio consumidor pode dar entrada no pedido, de forma gratuita.</p>'
+    }
+  };
+
+  function openGlossary(term){
+    var g = GLOSSARY[term];
+    if(!g) return;
+    document.getElementById("modalTitle").textContent = g.title;
+    document.getElementById("modalBody").innerHTML = g.html;
+    var bd = document.getElementById("modalBackdrop");
+    bd.hidden = false;
+    document.body.style.overflow = "hidden";
+    document.getElementById("modalClose").focus();
+  }
+  function closeGlossary(){
+    document.getElementById("modalBackdrop").hidden = true;
+    document.body.style.overflow = "";
+  }
+  document.getElementById("modalClose").addEventListener("click", closeGlossary);
+  document.getElementById("modalBackdrop").addEventListener("click", function(e){ if(e.target === this) closeGlossary(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeGlossary(); });
+  document.body.addEventListener("click", function(e){
+    var t = e.target.closest(".term-link");
+    if(t) openGlossary(t.getAttribute("data-term"));
+  });
+
+  /* ---------------- Painel: Início ---------------- */
+  var panelInicio = document.createElement("section");
+  panelInicio.className = "panel"; panelInicio.id = "panel-inicio";
+  panelInicio.innerHTML =
+    '<div class="hero">' +
+      '<div>' +
+        '<h1>Compra segura, <span>sem enrosco</span> 🛍️</h1>' +
+        '<p>Seus direitos em marketplaces, redes sociais, TikTok, lives e apps de entrega — em bloquinhos rápidos de ler, sem juridiquês.</p>' +
+        '<div class="hero-ctas">' +
+          '<button class="btn btn-primary" id="ctaFluxo">Não recebi minha compra 😩</button>' +
+          '<button class="btn btn-ghost" id="ctaQuiz">Fazer o quiz 🎯</button>' +
+        '</div>' +
+        '<div class="hero-stats"><div><b id="viewCount">—</b>já leram</div><div><b id="quizCount">—</b>fizeram o quiz</div></div>' +
+      '</div>' +
+      '<div class="hero-art"><svg viewBox="0 0 260 240" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<ellipse cx="130" cy="215" rx="90" ry="14" fill="#D8ECE1"/>' +
+        '<rect x="55" y="40" width="150" height="150" rx="22" fill="#FFFFFF" stroke="#D8ECE1" stroke-width="2"/>' +
+        '<rect x="55" y="40" width="150" height="34" rx="22" fill="#7C5CFF"/>' +
+        '<circle cx="72" cy="57" r="5" fill="#fff"/><circle cx="88" cy="57" r="5" fill="#fff" opacity=".6"/>' +
+        '<rect x="80" y="95" width="100" height="14" rx="7" fill="#FFE1DC"/>' +
+        '<rect x="80" y="118" width="70" height="14" rx="7" fill="#DBF5EE"/>' +
+        '<circle cx="130" cy="170" r="26" fill="#FF6B5E"/>' +
+        '<path d="M119 170l8 8 16-18" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
+        '<path d="M25 120c-10-18 6-38 26-32 4-16 30-18 36-2 18-6 34 12 24 28" stroke="#FFB238" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+        '<rect x="185" y="150" width="46" height="40" rx="8" fill="#FFB238"/>' +
+        '<path d="M193 150v-8a15 15 0 0 1 30 0v8" stroke="#8A5A00" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+      '</svg></div>' +
+    '</div>' +
+    '<div class="home-grid" id="homeGrid"></div>';
+  main.appendChild(panelInicio);
+
+  var homeGrid = document.getElementById("homeGrid");
+  var homeItems = [
+    ["🔁","Arrependimento","arrependimento"],["🏬","Quem resolve o perrengue","responsabilidade"],
+    ["📱","Redes sociais e TikTok","social"],["🚩","Golpes comuns","golpes"],
+    ["🛵","Apps de entrega","entrega"],["🔒","Seus dados (LGPD)","lgpd"],
+    ["🧭","Não recebi, e agora?","fluxo"],["📢","Onde pedir ajuda","canais"]
+  ];
+  homeItems.forEach(function(it){
+    var card = document.createElement("button");
+    card.className = "home-card";
+    card.innerHTML = '<span class="emo">'+it[0]+'</span><span class="txt">'+it[1]+'</span>';
+    card.addEventListener("click", function(){ showPanel(it[2]); });
+    homeGrid.appendChild(card);
+  });
+  document.getElementById("ctaFluxo").addEventListener("click", function(){ showPanel("fluxo"); });
+  document.getElementById("ctaQuiz").addEventListener("click", function(){ showPanel("quiz"); });
+
+  /* ---------------- Painel: Arrependimento ---------------- */
+  var p = document.createElement("section"); p.className="panel"; p.id="panel-arrependimento"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid">' +
+      '<div class="art"><svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="100" cy="100" r="92" fill="#DBF5EE"/>' +
+        '<rect x="52" y="55" width="96" height="96" rx="16" fill="#fff" stroke="#1EA896" stroke-width="3"/>' +
+        '<rect x="52" y="55" width="96" height="26" rx="16" fill="#1EA896"/>' +
+        '<text x="100" y="120" font-family="Baloo 2, sans-serif" font-size="46" font-weight="700" fill="#116355" text-anchor="middle">7</text>' +
+        '<text x="100" y="140" font-family="Nunito, sans-serif" font-size="12" font-weight="800" fill="#116355" text-anchor="middle">DIAS</text>' +
+        '<path d="M58 168a42 20 0 0 1 84 0" stroke="#1EA896" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+        '<path d="M52 165l6 8 8-4" stroke="#1EA896" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg></div>' +
+      '<div>' +
+        '<span class="tag" style="background:var(--teal-tint); color:#116355;">Art. 49 do CDC</span>' +
+        '<h2 class="block-title">Mudou de ideia? Você pode desistir</h2>' +
+        '<ul class="bullets">' +
+          '<li><span class="ico">🗓️</span><span><button class="term-link" data-term="arrependimento">7 dias corridos</button> a partir do recebimento pra devolver.</span></li>' +
+          '<li><span class="ico">🙅</span><span>Não precisa <b>dar explicação</b> nenhuma.</span></li>' +
+          '<li><span class="ico">💸</span><span>Devolvem <b>tudo</b> — produto e frete de entrega.</span></li>' +
+          '<li><span class="ico">📦</span><span>O frete de <b>devolução</b> é por conta da loja.</span></li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Responsabilidade ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-responsabilidade"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid reverse">' +
+      '<div>' +
+        '<span class="tag" style="background:var(--violet-tint); color:#4A2FCC;">Marketplace x vendedor</span>' +
+        '<h2 class="block-title">Deu problema — quem resolve?</h2>' +
+        '<ul class="bullets">' +
+          '<li><span class="ico">🏬</span><span>Comprou num marketplace? Loja e app podem <button class="term-link" data-term="responsabilidade">responder juntos</button>.</span></li>' +
+          '<li><span class="ico">📦</span><span>Produto errado, com defeito ou <b>diferente do anúncio</b> → é com quem vendeu.</span></li>' +
+          '<li><span class="ico">💳</span><span>Falha no <b>pagamento</b> ou pedido sumiu → é com o app.</span></li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="art"><svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<ellipse cx="100" cy="165" rx="75" ry="10" fill="#E9E3FF"/>' +
+        '<rect x="30" y="60" width="60" height="80" rx="10" fill="#7C5CFF"/>' +
+        '<rect x="110" y="40" width="60" height="100" rx="10" fill="#FFB238"/>' +
+        '<circle cx="60" cy="55" r="16" fill="#7C5CFF"/><circle cx="140" cy="35" r="16" fill="#FFB238"/>' +
+        '<path d="M76 80h48" stroke="#fff" stroke-width="6" stroke-linecap="round"/>' +
+        '<circle cx="76" cy="80" r="7" fill="#fff"/><circle cx="124" cy="80" r="7" fill="#fff"/>' +
+      '</svg></div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Redes sociais (com TikTok) ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-social"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid">' +
+      '<div class="art"><svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<rect x="35" y="20" width="130" height="140" rx="18" fill="#fff" stroke="#D8ECE1" stroke-width="3"/>' +
+        '<circle cx="65" cy="52" r="14" fill="#FF6B5E"/>' +
+        '<rect x="88" y="45" width="55" height="8" rx="4" fill="#FFE1DC"/>' +
+        '<rect x="88" y="58" width="35" height="8" rx="4" fill="#FFE1DC"/>' +
+        '<rect x="50" y="85" width="100" height="45" rx="10" fill="#DBF5EE"/>' +
+        '<path d="M60 155l14-14 14 14" stroke="#7C5CFF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="150" cy="150" r="20" fill="#FFB238"/>' +
+        '<text x="150" y="157" font-family="Baloo 2, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">!</text>' +
+      '</svg></div>' +
+      '<div>' +
+        '<span class="tag" style="background:var(--gold-tint); color:#8A5A00;">Instagram, TikTok, WhatsApp e lives</span>' +
+        '<h2 class="block-title">Rede social também tem regra</h2>' +
+        '<ul class="bullets">' +
+          '<li><span class="ico">🪪</span><span>Perfil de venda precisa ter <button class="term-link" data-term="social">nome, CNPJ/CPF e contato</button>.</span></li>' +
+          '<li><span class="ico">🎥</span><span>Promoção de <b>live</b> não tira seu direito de arrependimento.</span></li>' +
+          '<li><span class="ico">🎵</span><span><b>TikTok Shop</b> e vídeos de venda seguem as mesmas regras do comércio eletrônico.</span></li>' +
+          '<li><span class="ico">🚩</span><span>Perfil sem nada disso? <b>Sinal de alerta.</b></span></li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Golpes ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-golpes"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid reverse">' +
+      '<div>' +
+        '<span class="tag" style="background:var(--coral-tint); color:#B8342A;">Fica esperto</span>' +
+        '<h2 class="block-title">Reconhecendo um golpe</h2>' +
+        '<p class="intro-line">Golpe é comum, mas dá pra <button class="term-link" data-term="golpes">se proteger</button> ficando de olho nos sinais.</p>' +
+        '<p style="color:var(--ink-soft); margin:0 0 .3rem; font-weight:700; font-size:.85rem;">SINAIS DE ALERTA</p>' +
+        '<div class="chip-grid">' +
+          '<span class="chip danger">🚩 Perfil novo copiando loja famosa</span>' +
+          '<span class="chip danger">🚩 Só aceita Pix, sem nota</span>' +
+          '<span class="chip danger">🚩 Link de "rastreio" suspeito</span>' +
+          '<span class="chip danger">🚩 Preço bom demais</span>' +
+        '</div>' +
+        '<p style="color:var(--ink-soft); margin:1.1rem 0 .3rem; font-weight:700; font-size:.85rem;">COMO SE PROTEGER</p>' +
+        '<div class="chip-grid">' +
+          '<span class="chip safe">✅ Pesquisa o CNPJ antes</span>' +
+          '<span class="chip safe">✅ Prefere cartão de crédito</span>' +
+          '<span class="chip safe">✅ Guarda print de tudo</span>' +
+          '<span class="chip safe">✅ Nunca clica em link de mensagem</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="art"><svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="100" cy="90" r="80" fill="#FFE1DC"/>' +
+        '<rect x="60" y="55" width="80" height="60" rx="12" fill="#fff" stroke="#FF6B5E" stroke-width="3"/>' +
+        '<circle cx="82" cy="78" r="10" fill="#FF6B5E"/>' +
+        '<rect x="98" y="72" width="30" height="6" rx="3" fill="#FFE1DC"/>' +
+        '<rect x="98" y="84" width="20" height="6" rx="3" fill="#FFE1DC"/>' +
+        '<path d="M100 130l14 24h-28z" fill="#FFB238"/>' +
+        '<text x="100" y="150" font-family="Baloo 2, sans-serif" font-size="14" font-weight="800" fill="#8A5A00" text-anchor="middle">!</text>' +
+      '</svg></div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Entrega ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-entrega"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid">' +
+      '<div class="art"><svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<ellipse cx="100" cy="145" rx="80" ry="10" fill="#DBF5EE"/>' +
+        '<rect x="55" y="70" width="70" height="50" rx="8" fill="#FFB238"/>' +
+        '<path d="M55 90h70" stroke="#8A5A00" stroke-width="3"/>' +
+        '<circle cx="70" cy="128" r="14" fill="#2E1A3D"/><circle cx="120" cy="128" r="14" fill="#2E1A3D"/>' +
+        '<circle cx="70" cy="128" r="5" fill="#fff"/><circle cx="120" cy="128" r="5" fill="#fff"/>' +
+        '<path d="M125 95h30l12 20v13h-20" stroke="#1EA896" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg></div>' +
+      '<div>' +
+        '<span class="tag" style="background:var(--teal-tint); color:#116355;">Apps de entrega</span>' +
+        '<h2 class="block-title">De quem é a culpa?</h2>' +
+        '<table class="mini">' +
+          '<tr><td>🍔 Produto errado/com defeito</td><td>Loja que vendeu</td></tr>' +
+          '<tr><td>💥 Chegou amassado/avariado</td><td>App / entregador</td></tr>' +
+          '<tr><td>❓ Nunca chegou</td><td>App + loja, juntos</td></tr>' +
+          '<tr><td>💳 Cobrança duplicada</td><td>App de entrega</td></tr>' +
+        '</table>' +
+        '<p class="intro-line" style="margin-top:.8rem;">Quer o detalhe de cada caso? <button class="term-link" data-term="entrega">Veja a explicação completa</button>.</p>' +
+      '</div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: LGPD ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-lgpd"; p.hidden = true;
+  p.innerHTML =
+    '<div class="block-grid reverse">' +
+      '<div>' +
+        '<span class="tag" style="background:var(--violet-tint); color:#4A2FCC;">LGPD</span>' +
+        '<h2 class="block-title">Seus dados são seus</h2>' +
+        '<ul class="bullets">' +
+          '<li><span class="ico">🔎</span><span>Você pode saber quais <button class="term-link" data-term="lgpd">dados pessoais</button> guardam sobre você.</span></li>' +
+          '<li><span class="ico">🗑️</span><span>Pode pedir pra <b>apagar</b> seus dados.</span></li>' +
+          '<li><span class="ico">🔗</span><span>Nunca manda <b>senha ou CPF</b> por link de mensagem.</span></li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="art"><svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="90" cy="90" r="80" fill="#E9E3FF"/>' +
+        '<rect x="55" y="80" width="70" height="55" rx="10" fill="#7C5CFF"/>' +
+        '<path d="M65 80v-16a25 25 0 0 1 50 0v16" stroke="#4A2FCC" stroke-width="7" fill="none" stroke-linecap="round"/>' +
+        '<circle cx="90" cy="105" r="9" fill="#fff"/><rect x="86" y="110" width="8" height="14" rx="3" fill="#fff"/>' +
+      '</svg></div>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Fluxograma ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-fluxo"; p.hidden = true;
+  p.innerHTML =
+    '<span class="tag" style="background:var(--gold-tint); color:#8A5A00;">Simulador</span>' +
+    '<h2 class="block-title">Comprei e não chegou, e agora? 🧭</h2>' +
+    '<p class="intro-line" style="max-width:54ch;">Responde as perguntinhas e a gente te diz o próximo passo.</p>' +
+    '<div class="flow-card"><div class="flow-trail" id="flowTrail"></div><div id="flowBody"></div>' +
+    '<button class="flow-restart" id="flowRestart">↺ Recomeçar</button></div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Canais ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-canais"; p.hidden = true;
+  p.innerHTML =
+    '<span class="tag" style="background:var(--teal-tint); color:#116355;">Pedir ajuda</span>' +
+    '<h2 class="block-title">Onde reclamar, de graça 📢</h2>' +
+    '<div class="channel-grid">' +
+      '<a class="channel-item" href="https://www.consumidor.gov.br" target="_blank" rel="noopener"><span class="emo">🖥️</span><h4>consumidor.gov.br</h4><p>Reclama direto com a empresa, com prazo de resposta.</p></a>' +
+      '<a class="channel-item" href="https://www.procon.sp.gov.br" target="_blank" rel="noopener"><span class="emo">🏛️</span><h4>PROCON</h4><p>Órgão de defesa do consumidor da sua cidade/estado.</p></a>' +
+      '<a class="channel-item" href="https://www.bcb.gov.br/estabilidadefinanceira/pix" target="_blank" rel="noopener"><span class="emo">💰</span><h4>MED do Pix</h4><p>Pede pro seu banco em até 80 dias da transação.</p></a>' +
+      '<a class="channel-item" href="https://www.cnj.jus.br" target="_blank" rel="noopener"><span class="emo">⚖️</span><h4>Juizado Especial</h4><p>Até 20 salários mínimos, sem precisar de advogado.</p></a>' +
+      '<a class="channel-item" href="https://www.defensoria.def.br" target="_blank" rel="noopener"><span class="emo">🤝</span><h4>Defensoria Pública</h4><p>Advogado gratuito pra quem precisar.</p></a>' +
+    '</div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Quiz ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-quiz"; p.hidden = true;
+  p.innerHTML =
+    '<span class="tag" style="background:var(--coral-tint); color:#B8342A;">Autoteste</span>' +
+    '<h2 class="block-title">Testa o que aprendeu 🎯</h2>' +
+    '<p class="intro-line">8 perguntinhas rápidas.</p>' +
+    '<div class="quiz-card"><div id="quizBody"></div></div>';
+  main.appendChild(p);
+
+  /* ---------------- Painel: Sobre ---------------- */
+  p = document.createElement("section"); p.className="panel"; p.id="panel-sobre"; p.hidden = true;
+  p.innerHTML =
+    '<span class="tag" style="background:var(--violet-tint); color:#4A2FCC;">Sobre</span>' +
+    '<h2 class="block-title">Sobre este material</h2>' +
+    '<p style="color:var(--ink-soft); max-width:60ch;">Material produzido pela equipe do curso de Direito da UnirG (Gurupi/TO), dando continuidade a um projeto que já resultou em um glossário de termos do CDC e uma cartilha sobre superendividamento. Este conteúdo é informativo e não substitui orientação jurídica sobre um caso concreto.</p>' +
+    '<h3 style="font-family:var(--font-display); font-weight:700; font-size:1.05rem; margin:1.5rem 0 .7rem;">Equipe</h3>' +
+    '<div class="chip-grid">' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Amanda Souza Santiago</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Breno Sousa Martins Dias</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Bruno Aguiar Lima</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Charles Batista dos Santos</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Fernando Bonfim</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Jacinto Pereira Santos</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Lucas Targino de Souza</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Odilon Fonseca Montel</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Sandrey Santos</span>' +
+      '<span class="chip" style="background:var(--violet-tint); color:#4A2FCC;">👤 Vitor Augusto do Nascimento Amorim</span>' +
+    '</div>' +
+    '<h3 style="font-family:var(--font-display); font-weight:700; font-size:1.05rem; margin:1.6rem 0 .6rem;">Manda pra quem também compra online 💌</h3>' +
+    '<div class="hero-ctas">' +
+      '<a class="btn btn-primary" id="waShare" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>' +
+      '<button class="btn btn-ghost" id="copyLink">Copiar link</button>' +
+    '</div>' +
+    '<p style="font-size:.76rem; color:var(--ink-soft); margin-top:1.8rem; border-top:1px solid var(--line); padding-top:.9rem; max-width:60ch;">Referências: Lei n.º 8.078/1990 (CDC) · Decreto n.º 7.962/2013 · Lei n.º 13.709/2018 (LGPD) · Lei n.º 12.965/2014 (Marco Civil da Internet) · Banco Central do Brasil, Mecanismo Especial de Devolução do Pix.</p>';
+  main.appendChild(p);
+
+  /* ---------------- Navegação Avançar / Retroceder ao final de cada aba ---------------- */
+  SECTIONS.forEach(function(s, i){
+    var panel = document.getElementById("panel-" + s.id);
+    if(!panel) return;
+    var prevS = i > 0 ? SECTIONS[i-1] : null;
+    var nextS = i < SECTIONS.length - 1 ? SECTIONS[i+1] : null;
+    var nav = document.createElement("div");
+    nav.className = "panel-nav";
+    nav.innerHTML =
+      '<button class="nav-btn prev"'+(prevS ? ' data-target="'+prevS.id+'" aria-label="Retroceder para '+prevS.label+'"' : ' disabled aria-disabled="true"')+'>← Retroceder</button>' +
+      '<span class="nav-progress">'+(i+1)+' / '+SECTIONS.length+'</span>' +
+      '<button class="nav-btn next"'+(nextS ? ' data-target="'+nextS.id+'" aria-label="Avançar para '+nextS.label+'"' : ' disabled aria-disabled="true"')+'>Avançar →</button>';
+    panel.appendChild(nav);
+  });
+  document.body.addEventListener("click", function(e){
+    var b = e.target.closest(".nav-btn");
+    if(b && !b.disabled && b.getAttribute("data-target")) showPanel(b.getAttribute("data-target"));
+  });
+
+  /* ---------------- Fluxograma interativo ---------------- */
+  var FLOW = {
+    q1: { q:"O prazo de entrega já venceu?", opts:[
+      {label:"Ainda não", crumb:"No prazo", next:"r_wait"},
+      {label:"Já venceu", crumb:"Prazo vencido", next:"q2"}
+    ]},
+    q2: { q:"Já chamou o vendedor pedindo solução, por escrito?", opts:[
+      {label:"Ainda não", crumb:"Sem contato", next:"r_contact"},
+      {label:"Já chamei", crumb:"Já contatei", next:"q3"}
+    ]},
+    q3: { q:"Ele resolveu (entregou, devolveu o dinheiro ou explicou direitinho)?", opts:[
+      {label:"Resolveu! 🎉", crumb:"Resolvido", next:"r_done"},
+      {label:"Não resolveu 😕", crumb:"Não resolveu", next:"q4"}
+    ]},
+    q4: { q:"Você pagou por Pix?", opts:[
+      {label:"Sim", crumb:"Pagou por Pix", next:"q5", flag:"pix"},
+      {label:"Não", crumb:"Outro pagamento", next:"q5"}
+    ]},
+    q5: { q:"Comprou num marketplace/app ou direto com um perfil de rede social?", opts:[
+      {label:"Marketplace/app", crumb:"Marketplace", next:"r_final", flag:"marketplace"},
+      {label:"Perfil de rede social", crumb:"Rede social", next:"r_final", flag:"social"}
+    ]}
+  };
+  var flowState = { node:"q1", trail:[], flags:{} };
+
+  function renderFlow(){
+    var box = document.getElementById("flowBody");
+    document.getElementById("flowTrail").innerHTML = flowState.trail.map(function(c){ return "<span>"+c+"</span>"; }).join("");
+    if(flowState.node.indexOf("r_") === 0){ box.innerHTML = flowResult(flowState.node); return; }
+    var node = FLOW[flowState.node];
+    var html = '<p class="flow-q">'+node.q+'</p><div class="flow-opts">';
+    node.opts.forEach(function(o,i){
+      html += '<button class="flow-opt'+(i>0?' secondary':'')+'" data-next="'+o.next+'" data-crumb="'+o.crumb+'" data-flag="'+(o.flag||"")+'">'+o.label+'</button>';
+    });
+    html += '</div>';
+    box.innerHTML = html;
+    Array.prototype.forEach.call(box.querySelectorAll(".flow-opt"), function(btn){
+      btn.addEventListener("click", function(){
+        var flag = btn.getAttribute("data-flag");
+        if(flag) flowState.flags[flag] = true;
+        flowState.trail.push(btn.getAttribute("data-crumb"));
+        flowState.node = btn.getAttribute("data-next");
+        renderFlow();
+      });
+    });
+  }
+
+  function flowResult(key){
+    var extra = "";
+    if(flowState.flags.pix && key!=="r_wait" && key!=="r_done"){
+      extra += '<div class="flow-note warn">💰 Pagou por Pix? Pede pro banco o <button class="term-link" data-term="med">MED</button> (Mecanismo Especial de Devolução) em até 80 dias. Suspeita de golpe? Registra um B.O. também.</div>';
+    }
+    var results = {
+      r_wait: '<div class="flow-result"><h3>Tudo certo por enquanto ⏳</h3><p>Ainda dentro do prazo — dá pra esperar e acompanhar o rastreio.</p></div>',
+      r_contact: '<div class="flow-result"><h3>Chama o vendedor primeiro 💬</h3><p>Manda mensagem por escrito pedindo prazo ou solução, e guarda print de tudo. Dá uns 5 a 10 dias úteis antes do próximo passo.</p></div>',
+      r_done: '<div class="flow-result"><h3>Resolvido! 🎉</h3><p>Guarda os prints da negociação por garantia. E fica esperto em compras futuras!</p></div>',
+      r_final: (flowState.flags.marketplace ?
+        '<div class="flow-result"><h3>Vai na central de ajuda 🏬</h3><p>Abre uma reclamação formal no marketplace/app pedindo reembolso — loja e app podem responder juntos. Sem solução? Vai pro consumidor.gov.br e PROCON.</p></div>'
+        :
+        '<div class="flow-result"><h3>Registra nos canais oficiais 📢</h3><p>Guarda print do anúncio e da conversa e registra no consumidor.gov.br e no PROCON. Se o vendedor sumir, vale um boletim de ocorrência.</p></div>')
+    };
+    var out = results[key] + extra;
+    if(key==="r_final" || key==="r_contact"){
+      out += '<div class="flow-note safe">⚖️ Sem solução ainda? Dá pra ir no <button class="term-link" data-term="juizado">Juizado Especial Cível</button> sem advogado (até 20 salários mínimos) ou na Defensoria Pública.</div>';
+    }
+    return out;
+  }
+
+  document.getElementById("flowRestart").addEventListener("click", function(){
+    flowState = { node:"q1", trail:[], flags:{} };
+    renderFlow();
+  });
+  renderFlow();
+
+  /* ---------------- Quiz ---------------- */
+  var QUIZ = [
+    { q:"Quanto tempo você tem pra desistir de uma compra online?", opts:["24 horas","7 dias corridos","30 dias","90 dias"], correct:1, explain:"7 dias corridos a partir do recebimento — e sem precisar justificar." },
+    { q:"Pra desistir dentro do prazo, você precisa:", opts:["Dar um motivo aceito pela loja","Pagar multa de 10%","Não precisa justificar nada","Provar defeito no produto"], correct:2, explain:"É incondicional — nenhuma explicação é exigida." },
+    { q:"Vendedor terceiro no marketplace deu problema. Quem responde?", opts:["Só o vendedor","Só o marketplace","Os dois podem responder juntos","Ninguém"], correct:2, explain:"Marketplace e vendedor podem responder solidariamente." },
+    { q:"Perfil oferece super desconto, só aceita Pix e não dá nota. Isso é:", opts:["Promoção normal","Sinal de golpe","Exigido por lei","Garantia extra"], correct:1, explain:"Esse combo é clássico de golpe." },
+    { q:"Pagou por Pix e não recebeu? Pode pedir ao banco:", opts:["Cancelar o CPF","O MED","Mais limite no cartão","Um empréstimo"], correct:1, explain:"O MED tenta bloquear e devolver o valor em até 80 dias." },
+    { q:"Onde reclamar de graça e online?", opts:["Só em cartório","consumidor.gov.br e PROCON","Só com advogado","Nas redes da empresa"], correct:1, explain:"Os dois são canais públicos e gratuitos." },
+    { q:"No Juizado Especial (até 20 salários mínimos):", opts:["Advogado é obrigatório","Custas são altas","Não precisa de advogado","Só depois de 1 ano"], correct:2, explain:"Até 20 salários mínimos, você entra sozinho." },
+    { q:"A LGPD garante que você pode:", opts:["Ser obrigado a dar seu CPF sempre","Saber e pedir a exclusão dos seus dados","Nada — não protege dados","Só reclamar por telefone"], correct:1, explain:"Transparência e direito de exclusão são garantidos pela LGPD." }
+  ];
+  var quizState = { i:0, score:0, answered:false };
+  var quizCounted = false;
+
+  function renderQuiz(){
+    var box = document.getElementById("quizBody");
+    if(quizState.i >= QUIZ.length){
+      box.innerHTML = '<div class="quiz-score"><p class="quiz-progress">RESULTADO</p><div class="big">'+quizState.score+' / '+QUIZ.length+'</div><p style="font-weight:700; margin-top:.4rem;">'+quizFeedback(quizState.score)+'</p><button class="flow-restart" id="quizRestart">↺ Refazer</button></div>';
+      document.getElementById("quizRestart").addEventListener("click", function(){ quizState={i:0,score:0,answered:false}; renderQuiz(); });
+      if(!quizCounted){ quizCounted = true; registerQuizCompletion(); }
+      return;
+    }
+    var item = QUIZ[quizState.i];
+    var html = '<p class="quiz-progress">PERGUNTA '+(quizState.i+1)+' DE '+QUIZ.length+'</p><p class="quiz-q">'+item.q+'</p>';
+    item.opts.forEach(function(opt,idx){ html += '<button class="quiz-opt" data-idx="'+idx+'">'+opt+'</button>'; });
+    html += '<div class="quiz-fb" id="quizFb"></div><button class="quiz-next" id="quizNext">Próxima →</button>';
+    box.innerHTML = html;
+    quizState.answered = false;
+    Array.prototype.forEach.call(box.querySelectorAll(".quiz-opt"), function(btn){
+      btn.addEventListener("click", function(){
+        if(quizState.answered) return;
+        quizState.answered = true;
+        var idx = parseInt(btn.getAttribute("data-idx"),10);
+        Array.prototype.forEach.call(box.querySelectorAll(".quiz-opt"), function(b,i){
+          b.disabled = true;
+          if(i===item.correct) b.classList.add("correct");
+          else if(i===idx) b.classList.add("incorrect");
+        });
+        if(idx===item.correct) quizState.score++;
+        var fb = document.getElementById("quizFb");
+        fb.style.display="block";
+        fb.textContent = (idx===item.correct ? "Mandou bem! " : "Quase — olha a certa. ") + item.explain;
+        document.getElementById("quizNext").style.display="inline-block";
+      });
+    });
+    document.getElementById("quizNext").addEventListener("click", function(){ quizState.i++; renderQuiz(); });
+  }
+  function quizFeedback(score){
+    var pct = score/QUIZ.length;
+    if(pct===1) return "Show de bola! Você manja dos seus direitos. 🏆";
+    if(pct>=0.6) return "Muito bem! Dá uma revisada nos blocos pra fixar o resto. 👍";
+    return "Vale a pena revisar os blocos acima antes da próxima compra. 🔎";
+  }
+  renderQuiz();
+
+  /* ---------------- Compartilhar ---------------- */
+  var shareText = "Guia rápido 'Compra Segura, Sem Enrosco' — direitos em marketplaces, redes sociais e apps de entrega: ";
+  document.getElementById("waShare").href = "https://wa.me/?text=" + encodeURIComponent(shareText + window.location.href);
+  document.getElementById("copyLink").addEventListener("click", function(){
+    var btn = this;
+    navigator.clipboard && navigator.clipboard.writeText(window.location.href).then(function(){
+      btn.textContent = "Link copiado!";
+      setTimeout(function(){ btn.textContent = "Copiar link"; }, 1800);
+    });
+  });
+
+  /* ---------------- Contador (CountAPI) ---------------- */
+  var NAMESPACE = "unirg-compras-seguras-2026";
+  function fmt(n){ return (typeof n==="number") ? n.toLocaleString("pt-BR") : "—"; }
+  fetch("https://api.countapi.xyz/hit/"+NAMESPACE+"/visitas-casual")
+    .then(function(r){return r.json();}).then(function(d){ document.getElementById("viewCount").textContent = fmt(d.value); })
+    .catch(function(){ document.getElementById("viewCount").textContent = "—"; });
+  fetch("https://api.countapi.xyz/get/"+NAMESPACE+"/quiz-respostas-casual")
+    .then(function(r){return r.json();}).then(function(d){ document.getElementById("quizCount").textContent = fmt(d.value||0); })
+    .catch(function(){ document.getElementById("quizCount").textContent = "—"; });
+  function registerQuizCompletion(){
+    fetch("https://api.countapi.xyz/hit/"+NAMESPACE+"/quiz-respostas-casual")
+      .then(function(r){return r.json();}).then(function(d){ document.getElementById("quizCount").textContent = fmt(d.value); })
+      .catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
