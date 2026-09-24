@@ -851,18 +851,32 @@
     });
   });
 
-  /* ---------------- Contador (CountAPI) ---------------- */
-  var NAMESPACE = "unirg-compras-seguras-2026";
-  function fmt(n){ return (typeof n==="number") ? n.toLocaleString("pt-BR") : "—"; }
-  fetch("https://api.countapi.xyz/hit/"+NAMESPACE+"/visitas-casual")
-    .then(function(r){return r.json();}).then(function(d){ document.getElementById("viewCount").textContent = fmt(d.value); })
+  /* ---------------- Contador de visitas e de quiz ---------------- */
+  /* Serviço usado antes (countapi.xyz) saiu do ar (domínio expirado) — trocado para o
+     sucessor countapi.mileshilliard.com, que segue o mesmo princípio (sem cadastro, sem chave). */
+  var COUNTER_BASE = "https://countapi.mileshilliard.com/api/v1";
+  var KEY_VIEWS = "unirg-direito-compras-seguras-casual-2026-visitas";
+  var KEY_QUIZ  = "unirg-direito-compras-seguras-casual-2026-quiz-respostas";
+
+  function fmt(n){
+    var num = Number(n);
+    return isNaN(num) ? "0" : num.toLocaleString("pt-BR");
+  }
+
+  fetch(COUNTER_BASE + "/hit/" + KEY_VIEWS)
+    .then(function(r){ return r.json(); })
+    .then(function(d){ document.getElementById("viewCount").textContent = fmt(d && d.value); })
     .catch(function(){ document.getElementById("viewCount").textContent = "—"; });
-  fetch("https://api.countapi.xyz/get/"+NAMESPACE+"/quiz-respostas-casual")
-    .then(function(r){return r.json();}).then(function(d){ document.getElementById("quizCount").textContent = fmt(d.value||0); })
+
+  fetch(COUNTER_BASE + "/get/" + KEY_QUIZ)
+    .then(function(r){ return r.json(); })
+    .then(function(d){ document.getElementById("quizCount").textContent = fmt(d && d.value); })
     .catch(function(){ document.getElementById("quizCount").textContent = "—"; });
+
   function registerQuizCompletion(){
-    fetch("https://api.countapi.xyz/hit/"+NAMESPACE+"/quiz-respostas-casual")
-      .then(function(r){return r.json();}).then(function(d){ document.getElementById("quizCount").textContent = fmt(d.value); })
+    fetch(COUNTER_BASE + "/hit/" + KEY_QUIZ)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ document.getElementById("quizCount").textContent = fmt(d && d.value); })
       .catch(function(){});
   }
 })();
